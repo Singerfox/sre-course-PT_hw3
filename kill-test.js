@@ -5,13 +5,13 @@ export const options = {
   discardResponseBodies: true,
   thresholds: {
     http_req_failed: [{ threshold: 'rate<0.01', abortOnFail: true }],
-    http_req_duration: [{ threshold: 'p(90)<500', abortOnFail: true }],
+    http_req_duration: [{ threshold: 'p(95)<500', abortOnFail: true }],
     checks: ['rate>0.9'],
   },
   scenarios: {
    breakpoint_test: {
       executor: 'ramping-arrival-rate',
-          preAllocatedVUs: 350,
+          preAllocatedVUs: 300,
     stages: [
      { duration: '15m', target: 3000 },
     ],
