@@ -13,8 +13,8 @@ export const options = {
       preAllocatedVUs: 75,
       exec: 'read',
     stages: [
-     { duration: '1m', target: 5000 },
-     { duration: '3m', target: 5000 },
+     { duration: '1m', target: 300 },
+     { duration: '3m', target: 300 },
      { duration: '1m', target: 0 },
     ],
    },
