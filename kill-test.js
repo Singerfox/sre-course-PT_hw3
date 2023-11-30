@@ -19,7 +19,7 @@ export const options = {
  },
 };
 
-export default function reads() {
+export default function read() {
   const url = `http://sre-course.singerfox.ru/WeatherForecast`;
   const params = {
     headers: {
