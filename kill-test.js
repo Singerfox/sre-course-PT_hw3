@@ -1,25 +1,31 @@
 import http from 'k6/http';
 import { check } from 'k6';
+import { sleep } from 'k6';
 
 export const options = {
   discardResponseBodies: true,
   thresholds: {
     http_req_failed: [{ threshold: 'rate<0.01', abortOnFail: true }],
-    http_req_duration: [{ threshold: 'p(95)<500', abortOnFail: true }],
+    http_req_duration: [{ threshold: 'p(95)<500', abortOnFail: false }],
     checks: ['rate>0.9'],
   },
   scenarios: {
-   breakpoint_test: {
-      executor: 'ramping-arrival-rate',
-          preAllocatedVUs: 300,
-    stages: [
-     { duration: '15m', target: 3000 },
+   kill_test: {
+//      executor: 'ramping-arrival-rate',
+//      preAllocatedVUs: 360,
+        executor: 'ramping-vus',
+        startVUs: 40,
+   stages: [
+     { duration: '1m', target: 100 },
+     { duration: '5m', target: 400 },
+     { duration: '5m', target: 700 },
+     { duration: '1m', target: 40 },
     ],
   },
  },
 };
 
-export default function read() {
+export default function () {
   const url = `http://sre-course.singerfox.ru/WeatherForecast`;
   const params = {
     headers: {
@@ -29,4 +35,5 @@ export default function read() {
   check(http.get(url, params), {
     'status 200': (r) => r.status === 200,
   });
+  sleep(1);
 }
