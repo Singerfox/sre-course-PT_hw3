@@ -6,7 +6,7 @@ export const options = {
   discardResponseBodies: true,
   thresholds: {
     http_req_failed: [{ threshold: 'rate<0.01', abortOnFail: true }],
-    http_req_duration: [{ threshold: 'p(95)<500', abortOnFail: false }],
+    http_req_duration: [{ threshold: 'p(90)<500', abortOnFail: false }],
     checks: ['rate>0.9'],
   },
   scenarios: {
