@@ -16,7 +16,7 @@ export const options = {
         executor: 'ramping-vus',
         startVUs: 100,
    stages: [
-     { duration: '11m', target: 1420 },
+     { duration: '14m', target: 1720 },
      { duration: '1m', target: 40 },
     ],
   },
@@ -33,5 +33,5 @@ export default function () {
   check(http.get(url, params), {
     'status 200': (r) => r.status === 200,
   });
-  sleep(1);
+//  sleep(1);
 }
